@@ -1,5 +1,5 @@
 // Define URL
-const url = 'https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json';
+const url = 'https://github.com/GarciaLuis0128/Project-3/blob/main/Project_3/Jobs%20in%20Data/jobsindata.json';
 
 // Fetch the JSON data and console log it
 d3.json(url).then(function(data){
