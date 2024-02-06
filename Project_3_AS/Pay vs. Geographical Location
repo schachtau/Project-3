@@ -1,0 +1,16 @@
+import matplotlib.pyplot as plt
+
+job_title = df['job_title']
+job_category = df['job_category']
+
+# Create a bar graph
+plt.figure(figsize=(10, 6))
+plt.bar(job_title, job_category, color='skyblue')
+plt.xlabel('Job Title')
+plt.ylabel('Job Category')
+plt.title('Job Category vs. Job Title')
+plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better visibility
+plt.tight_layout()
+
+# Display the bar graph
+plt.show()
