@@ -10,6 +10,8 @@ Efforts for Ethical Considerations:
 
 In our project, ethics play a central role. We handle the data from the "Jobs in Data" dataset on Kaggle with care, ensuring responsible use throughout. While personal information isn't part of our analysis, we prioritize privacy and confidentiality. We also strive for fairness in our approach, considering different aspects of employment trends in the data science field. When sharing our insights, we do so respectfully, mindful of the impact on all parties involved. Our aim is to conduct research that upholds ethical standards and contributes positively to understanding employment dynamics in data science.
 
+The dashboard can be reached at: https://garcialuis0128.github.io/Project-3/
+
 References for the data sources:
 
 1. AI Jobs: [https://ai-jobs.net/salaries/download/](https://ai-jobs.net/salaries/download/)
