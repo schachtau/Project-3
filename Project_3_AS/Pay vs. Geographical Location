@@ -1,3 +1,12 @@
+import pandas as pd
+
+csv_file_path = 'jobs_in_data.csv'
+
+# DataFrame from the CSV file
+df = pd.read_csv(csv_file_path)
+
+# Display the DataFrame
+df
 import matplotlib.pyplot as plt
 
 job_title = df['job_title']
