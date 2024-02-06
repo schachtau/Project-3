@@ -1,55 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Jobs in Data</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+    #demographics-box {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
 </head>
-
 <body>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 jumbotron text-center">
-        <h1>Jobs in Data Dashboard</h1>
-        <p>Use the interactive charts below to explore the dataset</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
-        <div class="well">
-          <h5>Test Subject ID No.:</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
-        </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Job Info</h3>
-          </div>
-          <div id="sample-metadata" class="panel-body"></div>
-        </div>
-      </div>
-      <div class="col-md-5">
-        <div id="bar"></div>
-      </div>
-      <div class="col-md-5">
-        <div id="gauge"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="bubble"></div>
-      </div>
-    </div>
-  </div>
+  <label for="index-dropdown">Select Index:</label>
+  <select id="index-dropdown" onchange="fetchData()">
+    <option value="" disabled selected>Select an index</option>
+  </select>
 
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="./static/js/app.js"></script>
-  <script src="./static/js/bonus.js"></script>
+  <div id="demographics-box"></div>
 
+  <script>
+    // Function to fetch data from the CSV file
+    async function fetchData() {
+      const selectedIndex = document.getElementById('index-dropdown').value;
+      if (!selectedIndex) return;
+
+      const url = 'https://raw.githubusercontent.com/GarciaLuis0128/Project-3/main/Project_3/Jobs%20in%20Data/Jobs%20in%20Data.csv';
+      
+      try {
+        const response = await fetch(url);
+        const data = await response.text();
+
+        // Parse CSV data
+        const rows = data.split('\n');
+        const headers = rows[0].split(',');
+        const selectedRow = rows[selectedIndex].split(',');
+
+        // Display demographics in the box
+        const demographicsBox = document.getElementById('demographics-box');
+        demographicsBox.innerHTML = '<h3>Job Data</h3>';
+        for (let i = 0; i < headers.length; i++) {
+          demographicsBox.innerHTML += `<p><strong>${headers[i]}:</strong> ${selectedRow[i]}</p>`;
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    // Function to populate the dropdown with indices
+    async function populateDropdown() {
+      const url = 'https://raw.githubusercontent.com/GarciaLuis0128/Project-3/main/Project_3/Jobs%20in%20Data/Jobs%20in%20Data.csv';
+
+      try {
+        const response = await fetch(url);
+        const data = await response.text();
+
+        const dropdown = document.getElementById('index-dropdown');
+        const rows = data.split('\n');
+
+        for (let i = 1; i < rows.length; i++) {
+          const option = document.createElement('option');
+          option.value = i;
+          option.text = i;
+          dropdown.add(option);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    // Populate dropdown on page load
+    populateDropdown();
+  </script>
 </body>
-
 </html>
